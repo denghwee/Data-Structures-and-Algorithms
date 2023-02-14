@@ -24,7 +24,10 @@ int main() {
 		int ans = -1, Min = a[0].second, k = a[0].first;
 		for (int i = 1 ; i < n ; i++)
 		{
-			ans = max(ans,a[i].second-Min);
+			if ( a[i].first > k )
+            		{
+				ans = max(ans,a[i].second-Min);
+            		}
 			if ( Min > a[i].second )
 			{
 				Min = a[i].second;
