@@ -14,7 +14,8 @@ int main() {
     cin >> t;
     while ( t-- )
     {
-        int n, k, res = 0;
+        int n, k;
+        long long res = 0;
         cin >> n >> k;
         vector <long long> a(n);
         for (int i = 0 ; i < n ; i++)
