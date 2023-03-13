@@ -9,26 +9,26 @@ using namespace std;
 const long long big = 1e6;
 
 int main() {
-	faster();
-	int n;
-	cin >> n;
-	vector <long long> a(n);
-	for (int i = 0 ; i < n ; i++)
-	{
-		cin >> a[i];
-	}
-	int cnt = 1, MAX = -1;
-	for (int i = 0 ; i < n - 1 ; i++)
-	{
-		if ( a[i] < a[i+1] )
-		{
-			cnt++;
-		}
-		else
-		{
-			MAX = max(MAX,cnt);
-			cnt = 0;
-		}
-	}
-	cout << MAX;
+    faster();
+    int t = 1;
+    // cin >> t;
+    while (t--)
+    {
+        long long n;
+        cin >> n;
+        int s = -1;
+        vector<int> a(n + 5), f(n + 5, 0);
+        for (int i = 1; i <= n; i++)
+            cin >> a[i];
+        for (int i = 1; i <= n; i++)
+        {
+            f[a[i]] = f[a[i] - 1] + 1;
+            s = max(s, f[a[i]]);
+        }
+        cout << n - s;
+        if (t != 0)
+        {
+            cout << endl;
+        }
+    }
 }
