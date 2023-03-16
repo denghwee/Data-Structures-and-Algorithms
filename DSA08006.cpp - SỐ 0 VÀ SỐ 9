@@ -1,0 +1,52 @@
+//I'm HuyNho or you can call me DengHwee
+#include <bits/stdc++.h>
+using namespace std;
+#define faster() ios_base::sync_with_stdio(false);cin.tie();cout.tie();
+#define matrix vector <vector<long long>>
+#define MOD 1000000007
+#define el "\n"
+#define fi first
+#define se second
+const long long big = 1e6;
+
+string to_09_number(int i) {
+    string s;
+    while ( i > 0 )
+    {
+        if ( i % 2 == 0 )
+        {
+            s = '0' + s;
+        }
+        else
+        {
+            s = '9' + s;
+            i--;
+        }
+        i /= 2;
+    }
+    return s;
+}
+
+int main() {
+    faster();
+    int t;
+    cin >> t;
+    while ( t-- )
+    {
+        int n;
+        cin >> n;
+        for (int i = 1 ; i <= 1000000 ; i++)
+        {
+            long long tmp = stol(to_09_number(i));
+            if ( tmp % n == 0 )
+            {
+                cout << tmp;
+                break;
+            }
+        }
+        if ( t != 0 )
+        {
+            cout << el;
+        }
+    }
+}
