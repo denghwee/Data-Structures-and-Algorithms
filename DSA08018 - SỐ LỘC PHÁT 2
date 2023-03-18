@@ -1,0 +1,47 @@
+//I'm HuyNho or you can call me DengHwee
+#include <bits/stdc++.h>
+using namespace std;
+#define faster() ios_base::sync_with_stdio(false);cin.tie();cout.tie();
+#define matrix vector <vector<long long>>
+#define MOD 1000000007
+#define el "\n"
+#define fi first
+#define se second
+const long long big = 1e6;
+
+int main() {
+    faster();
+    int t;  
+    cin >> t;
+    while ( t-- )
+    {
+        long long res_size = 0;
+        int n;
+        cin >> n;
+        queue <string> q;
+        queue <string> res;
+        q.push("6");
+        q.push("8");
+        while ( q.size() )
+        {
+            string tmp = q.front();
+            res.push(tmp);
+            q.pop();
+            if ( tmp.size() < n )
+            {
+                q.push(tmp+"6");
+                q.push(tmp+"8");
+            }
+        }
+        cout << res.size() << el;
+        while ( res.size() )
+        {
+            cout << res.front() << " ";
+            res.pop();
+        }
+        if ( t != 0 )
+        {
+            cout << el;
+        }
+    }
+}
