@@ -1,0 +1,73 @@
+//I'm HuyNho or you can call me DengHwee
+#include <bits/stdc++.h>
+using namespace std;
+#define faster() ios_base::sync_with_stdio(false);cin.tie();cout.tie();
+#define matrix vector <vector<long long>>
+#define MOD 1000000007
+#define el "\n"
+#define fi first
+#define se second
+const long long big = 1e6;
+
+struct point {
+    long long x, y, step;
+};
+
+int main() {
+    faster();
+    int t;
+    cin >> t;
+    while ( t-- )
+    {
+        long long ans = 1e9;
+        int m, n;
+        cin >> m >> n;
+        matrix a(m+1,vector <long long> (n+1));
+        vector <vector <bool>> check(m+1,vector <bool> (n+1,1));
+        for (int i = 1 ; i <= m ; i++)
+        {
+            for (int j = 1 ; j <= n ; j++)
+            {
+                cin >> a[i][j];
+            }
+        }
+        point tmp, k;
+        tmp.x = tmp.y = 1;
+        tmp.step = 0;
+        queue <point> q;
+        q.push(tmp);
+        while ( q.size() )
+        {
+            tmp = q.front();
+            q.pop();
+            if ( tmp.x == m && tmp.y == n )
+                ans = min(ans,tmp.step);
+            k = tmp;
+            k.step++;
+            if ( tmp.x + a[tmp.x][tmp.y] <= m && check[tmp.x + a[tmp.x][tmp.y]][tmp.y] )
+            {
+                check[tmp.x + a[tmp.x][tmp.y]][tmp.y] = 0;
+                k.x += a[tmp.x][tmp.y];
+                q.push(k);
+                k.x -= a[tmp.x][tmp.y];
+            }
+            if ( tmp.y + a[tmp.x][tmp.y] <= n && check[tmp.x][tmp.y + a[tmp.x][tmp.y]] )
+            {
+                check[tmp.x][tmp.y + a[tmp.x][tmp.y]] = 0;
+                k.y += a[tmp.x][tmp.y];
+                q.push(k);
+                k.y -= a[tmp.x][tmp.y];
+            }
+        }
+
+        if ( ans == 1e9 )
+            cout << -1;
+        else
+            cout << ans;
+
+        if ( t != 0 )
+        {
+            cout << el;
+        }
+    }
+}
