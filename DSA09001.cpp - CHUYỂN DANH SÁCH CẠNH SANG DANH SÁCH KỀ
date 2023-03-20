@@ -1,0 +1,38 @@
+//I'm HuyNho or you can call me DengHwee
+#include <bits/stdc++.h>
+using namespace std;
+#define faster() ios_base::sync_with_stdio(false);cin.tie();cout.tie();
+#define matrix vector <vector<long long>>
+#define MOD 1000000007
+#define el "\n"
+#define fi first
+#define se second
+const long long big = 1e6;
+
+int main() {
+    faster();
+    int t;
+    cin >> t;
+    while ( t-- )
+    {
+        int v, e, x, y;
+        cin >> v >> e;
+        matrix adjacency_list(v+1);
+        for (int i = 0 ; i < e ; i++)
+        {
+            cin >> x >> y;
+            adjacency_list[x].push_back(y);
+            adjacency_list[y].push_back(x);
+        }
+        for (int i = 1 ; i <= v ; i++)
+        {
+            sort(adjacency_list[i].begin(),adjacency_list[i].end());
+            cout << i << ":";
+            for (int j = 0 ; j < adjacency_list[i].size() ; j++)
+            {
+                cout << " " << adjacency_list[i][j];
+            }
+            cout << el;
+        }
+    }
+}
