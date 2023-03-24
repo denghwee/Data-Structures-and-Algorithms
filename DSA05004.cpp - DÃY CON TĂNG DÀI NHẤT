@@ -1,0 +1,31 @@
+//I'm HuyNho or you can call me DengHwee
+#include <bits/stdc++.h>
+using namespace std;
+#define faster() ios_base::sync_with_stdio(false);cin.tie();cout.tie();
+#define matrix vector <vector<long long>>
+#define MOD 1000000007
+#define el "\n"
+#define fi first
+#define se second
+const long long big = 1e6;
+
+int main() {
+    faster();
+    int n;
+    cin >> n;
+    vector <long long> a(n), dp(n,1);
+    long long res = 0;
+    for (int i = 0 ; i < n ; i++)
+    {
+        cin >> a[i];
+        for (int j = 0 ; j < i ; j++)
+        {
+            if ( a[j] < a[i] && dp[i] <= dp[j] )
+            {
+                dp[i] = dp[j] + 1;
+                res = max(res,dp[i]);
+            }
+        }
+    }
+    cout << res;
+}
