@@ -1,0 +1,53 @@
+//I'm HuyNho or you can call me DengHwee
+#include <bits/stdc++.h>
+using namespace std;
+#define faster() ios_base::sync_with_stdio(false);cin.tie();cout.tie();
+#define matrix vector <vector<long long>>
+#define MOD 1000000007
+#define el "\n"
+#define fi first
+#define se second
+const long long big = 1e6;
+
+int sum, n;
+string ans;
+int a[105];
+
+void Try(int pos, int s) {
+    if ( ans == "YES" )
+    {
+        return;
+    }
+    if ( s * 2 == sum )
+    {
+        ans = "YES";
+        return;
+    }
+    if ( pos < n )
+    {
+        if ( 2 * (s + a[pos]) <= sum ) Try(pos+1, s+a[pos]);
+        Try(pos+1, s);
+    }
+}
+
+int main() {
+    int t;
+    cin >> t;
+    while ( t-- )
+    {
+        ans = "NO";
+        sum = 0;
+        cin >> n;
+        for (int i = 0 ; i < n ; i++)
+        {
+            cin >> a[i];
+            sum += a[i];
+        }
+        if ( sum % 2 == 0 ) Try(-1,0);
+        cout << ans;
+        if ( t != 0 )
+        {
+            cout << el;
+        }
+    }
+}
