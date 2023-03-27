@@ -1,0 +1,59 @@
+//I'm HuyNho or you can call me DengHwee
+#include <bits/stdc++.h>
+using namespace std;
+#define faster() ios_base::sync_with_stdio(false);cin.tie();cout.tie();
+#define matrix vector <vector<long long>>
+#define MOD 1000000007
+#define el "\n"
+#define fi first
+#define se second
+const long long big = 1e6;
+
+vector<string> generateGray(int n) {
+    if (n <= 0)
+        return {"0"};
+ 
+    if (n == 1)
+    {
+      return {"0","1"};
+    }
+ 
+    vector <string> recAns = generateGray(n-1);
+    vector <string> mainAns;
+     
+    for(int i=0;i<recAns.size();i++)
+    {
+      string s=recAns[i];
+      mainAns.push_back("0"+s);
+    }
+     
+    for(int i=recAns.size()-1;i>=0;i--)
+    {
+       string s=recAns[i];
+       mainAns.push_back("1"+s);
+    }
+    return mainAns;
+}
+ 
+void generateGrayarr(int n) {
+    vector<string> arr;
+    arr=generateGray(n);
+    for (int i = 0 ; i < arr.size(); i++)
+        cout << arr[i] << " ";
+}
+
+int main() {
+    faster();
+    int t;
+    cin >> t;
+    while ( t-- )
+    {
+        int n;
+        cin >> n;
+        generateGrayarr(n);
+        if ( t != 0 )
+        {
+            cout << el;
+        }
+    }
+}
