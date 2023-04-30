@@ -1,0 +1,69 @@
+//I'm HuyNho or you can call me DengHwee
+#include <bits/stdc++.h>
+using namespace std;
+#define faster() ios_base::sync_with_stdio(false);cin.tie();cout.tie();
+#define matrix vector <vector<long long>>
+#define MOD 1000000007
+#define el "\n"
+#define fi first
+#define se second
+const long long big = 1e6;
+
+int e, f, u, v;
+vector <vector <int>> a;
+vector <bool> check;
+
+void reset() {
+    a.clear();
+    a.resize(e + 1);
+    check.clear();
+    check.resize(e + 1, 1);
+}
+
+int main() {
+    faster();
+    int t;
+    cin >> t;
+    while ( t-- )
+    {
+        int hasRes = 0;
+        queue <pair <int,string>> q;
+        string s;
+        cin >> e >> f >> u >> v;
+        reset();
+        for (int i = 0 ; i < f ; i++)
+        {
+            int m, n;
+            cin >> m >> n;
+            a[m].push_back(n);
+        }
+        int x, y;
+        q.push({u, to_string(u) + " "});
+        check[u] = 0;
+        while ( q.size() )
+        {
+            x = q.front().first;
+            s = q.front().second;
+            if ( x == v )
+            {
+                hasRes = 1;
+                cout << s << el;
+                break;
+            }
+            q.pop();
+            for (int i = 0 ; i < a[x].size() ; i++)
+            {
+                y = a[x][i];
+                if ( check[y] )
+                {
+                    check[y] = 0;
+                    q.push({y, s + to_string(y) + " "});
+                }
+            }
+        }
+        if ( hasRes == 0 )
+        {
+            cout << -1 << el;
+        }
+    }
+}
