@@ -1,0 +1,74 @@
+//I'm HuyNho or you can call me DengHwee
+#include <bits/stdc++.h>
+using namespace std;
+#define faster() ios_base::sync_with_stdio(false);cin.tie();cout.tie();
+#define matrix vector <vector<long long>>
+#define MOD 1000000007
+#define el "\n"
+#define fi first
+#define se second
+const long long big = 1e6;
+
+int n, m;
+vector <vector <int>> a;
+vector <int> check;
+
+void reset() {
+    a.clear();
+    a.resize(n + 1);
+    check.clear();
+    check.resize(n + 1, 0);
+}
+
+int main() {
+    faster();
+    int t;
+    cin >> t;
+    while ( t-- )
+    {
+        int x, y;
+        cin >> n >> m;
+        reset();
+        for (int i = 0 ; i < m ; i++)
+        {
+            cin >> x >> y;
+            a[x].push_back(y);
+            a[y].push_back(x);
+        }
+        int q, hasRes;
+        cin >> q;
+        while ( q-- )
+        {
+            hasRes = 0;
+            cin >> x >> y;
+            queue <int> st;
+            st.push(x);
+            check.clear();
+            check.resize(n + 1, 0);
+            while ( st.size() )
+            {
+                int tmp = st.front();
+                st.pop();
+                if ( tmp == y )
+                {
+                    hasRes = 1;
+                    cout << "YES" << el;
+                    break;
+                }
+                for (int i = 0 ; i < a[tmp].size() ; i++)
+                {
+                    int tmp1 = a[tmp][i];
+                    if ( !check[tmp1] )
+                    {
+                        check[tmp1] = 1;
+                        st.push(tmp1);
+                    }
+                }
+            }
+            if ( hasRes == 0 )
+            {
+                cout << "NO" << el;
+            }
+        }
+    }
+}
