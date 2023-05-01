@@ -1,0 +1,71 @@
+//I'm HuyNho or you can call me DengHwee
+#include <bits/stdc++.h>
+using namespace std;
+#define faster() ios_base::sync_with_stdio(false);cin.tie();cout.tie();
+#define matrix vector <vector<long long>>
+#define MOD 1000000007
+#define el "\n"
+#define fi first
+#define se second
+const long long big = 1e6;
+
+int n, k, s, check;
+vector <int> a;
+
+void sinhtohop() {
+    int i = k;
+    while ( i > 0 && a[i] == n - k + i )
+	{
+		i--;
+	}
+    if ( i > 0 )
+    {
+    	a[i]++;
+	    for (int j = i + 1 ; j <= k ; j++)
+		{
+			a[j] = a[i] + j - i;
+		}
+	}
+	else
+	{
+		check++;
+	}
+}
+
+int main() {
+    faster();
+    while ( true )
+    {
+        check = 0;
+        cin >> n >> k >> s;
+        if ( n == 0 && k == 0 && s == 0 )
+        {
+            return 0;
+        }
+        if ( n < k )
+        {
+            cout << 0 << el;
+            continue;
+        }
+        a.resize(k + 1);
+        for (int i = 1 ; i <= k ; i++)
+        {
+            a[i] = i;
+        }
+        int res = 0, sum = 0;
+        while ( check == 0 )
+        {
+            sum = 0;
+            for (int i = 1 ; i <= k ; i++)
+            {
+                sum += a[i];
+            }
+            if ( sum == s )
+            {
+                res++;
+            }
+            sinhtohop();
+        }
+        cout << res << el;
+    }
+}
