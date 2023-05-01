@@ -1,0 +1,54 @@
+//I'm HuyNho or you can call me DengHwee
+#include <bits/stdc++.h>
+using namespace std;
+#define faster() ios_base::sync_with_stdio(false);cin.tie();cout.tie();
+#define matrix vector <vector<long long>>
+#define MOD 1000000007
+#define el "\n"
+#define fi first
+#define se second
+const long long big = 1e6;
+
+int v, e;
+vector <int> a;
+
+void reset() {
+    a.clear();
+    a.resize(v + 1);
+}
+
+int main() {
+    faster();
+    int t;
+    cin >> t;
+    while ( t-- )
+    {
+        int x, y, cnt = 0;
+        cin >> v >> e;
+        reset();
+        for (int i = 0 ; i < e ; i++)
+        {
+            cin >> x >> y;
+            a[x]++;
+            a[y]--;
+        }
+        int check = 0;
+        for (int i = 1; i <= v ; i++)
+        {
+            if ( a[i] != 0 )
+            {
+                check = 1;
+                cout << 0;
+                break;
+            }
+        }
+        if ( check == 0 )
+        {
+            cout << 1;
+        }
+        if ( t != 0 )
+        {
+            cout << el;
+        }
+    }
+}
