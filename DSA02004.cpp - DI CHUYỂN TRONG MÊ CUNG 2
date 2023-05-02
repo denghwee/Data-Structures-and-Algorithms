@@ -1,0 +1,81 @@
+//I'm HuyNho or you can call me DengHwee
+#include <bits/stdc++.h>
+using namespace std;
+#define faster() ios_base::sync_with_stdio(false);cin.tie();cout.tie();
+#define matrix vector <vector<long long>>
+#define MOD 1000000007
+#define el "\n"
+#define fi first
+#define se second
+const long long big = 1e6;
+
+int n;
+matrix a;
+vector <string> ans;
+string s;
+vector<pair <string, pair <int, int>>> direction = {{"D", {1, 0}}, {"L", {0, -1}}, {"R", {0, 1}}, {"U", {-1, 0}}};
+
+void reset() {
+    ans.clear();
+    a.clear();
+    a.resize(n + 1);
+}
+
+void Try(int posX, int posY, string s) {
+    if ( posX == n - 1 && posY == n - 1 )
+    {
+        ans.push_back(s);
+        return;
+    }
+    for (int i = 0 ; i < 4 ; i++)
+    {
+        int x = posX + direction[i].se.fi;
+        int y = posY + direction[i].se.se;
+        if ( x >= 0 && x < n && y >= 0 && y < n && a[x][y] )
+        {
+            a[x][y] = 0;
+            Try(x, y, s + direction[i].fi);
+            a[x][y] = 1;
+        }
+    }
+}
+
+int main() {
+    faster();
+    int t;
+    cin >> t;
+    while ( t-- )
+    {
+        cin >> n;
+        reset();
+        for (int i = 0 ; i < n ; i++)
+        {
+            for (int j = 0 ; j < n ; j++)
+            {
+                int x;
+                cin >> x;
+                a[i].push_back(x);
+            }
+        }
+        if ( a[0][0] == 1 )
+        {
+            a[0][0] = 0;
+            Try(0, 0, "");
+        }
+        if ( ans.size() )
+        {
+            for (int i = 0 ; i < ans.size() ; i++)
+            {
+                cout << ans[i] << " ";
+            }
+        }
+        else
+        {
+            cout << -1;
+        }
+        if ( t != 0 )
+        {
+            cout << el;
+        }
+    }
+}
