@@ -1,0 +1,54 @@
+//I'm HuyNho or you can call me DengHwee
+#include <bits/stdc++.h>
+using namespace std;
+#define faster() ios_base::sync_with_stdio(false);cin.tie();cout.tie();
+#define matrix vector <vector<long long>>
+#define MOD 1000000007
+#define el "\n"
+#define fi first
+#define se second
+const long long big = 1e6;
+
+int main() {
+    faster();
+    int n, k;
+    cin >> n >> k;
+    int a[n][n];
+    for (int i = 0 ; i < n ; i++)
+    {
+        for (int j = 0 ; j < n ; j++)
+        {
+            cin >> a[i][j];
+        }
+    }
+    vector <long long> pos(n);
+    vector <vector <long long>> ans;
+    for (int i = 0 ; i < n ; i++)
+    {
+        pos[i] = i;
+    }
+    do
+    {
+        int sum = 0;
+        for (int i = 0 ; i < n ; i++)
+        {
+            sum += a[i][pos[i]];
+        }
+        if ( sum == k )
+        {
+            ans.push_back(pos);
+        }
+    }
+    while ( next_permutation(pos.begin(), pos.end()) );
+    
+    //Output result
+    cout << ans.size() << el;
+    for (int i = 0 ; i < ans.size() ; i++)
+    {
+        for (int j = 0 ; j < ans[i].size() ; j++)
+        {
+            cout << ans[i][j] + 1 << " ";
+        }
+        cout << el;
+    }
+}
